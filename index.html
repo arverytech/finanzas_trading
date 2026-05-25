@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>JHARVAR FINANCE - Ecosistema Avanzado de Aprendizaje</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #030712; color: #f3f4f6; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #0b0f19; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #374151; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+    </style>
+</head>
+<body class="h-screen flex overflow-hidden custom-scrollbar">
+
+    <aside class="w-80 bg-slate-950 border-r border-slate-800 flex flex-col justify-between z-20">
+        <div>
+            <div class="p-6 border-b border-slate-800 flex items-center space-x-3 bg-slate-900/50">
+                <img src="Logo Jharvar.jpeg" alt="JHARVAR FINANCE Logo" class="w-12 h-12 rounded-xl object-cover border border-emerald-500/30 shadow-lg shadow-emerald-500/10" onerror="this.src='https://placehold.co/100x100/0f172a/10b981?text=JF'"/>
+                <div>
+                    <h1 class="text-lg font-bold text-white tracking-wider">JHARVAR</h1>
+                    <p class="text-xs text-emerald-400 font-semibold uppercase tracking-widest">FINANCE</p>
+                </div>
+            </div>
+
+            <nav class="p-4 space-y-1">
+                <p class="px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Módulos de Ingeniería</p>
+                
+                <button onclick="switchTab('semana3')" id="btn-semana3" class="tab-btn w-full flex items-center space-x-3 px-3 py-3 rounded-xl text-sm font-medium transition-all text-emerald-400 bg-slate-900 border border-emerald-500/20 shadow-md">
+                    <i class="fa-solid fa-chart-pie text-base"></i>
+                    <span>Semana 3: Mercado de Capitales</span>
+                </button>
+
+                <button onclick="switchTab('semana4')" id="btn-semana4" class="tab-btn w-full flex items-center space-x-3 px-3 py-3 rounded-xl text-sm font-medium transition-all text-slate-400 hover:text-slate-200 hover:bg-slate-900/50">
+                    <i class="fa-solid fa-chart-line text-base"></i>
+                    <span>Semana 4: Análisis Técnico Algorítmico</span>
+                </button>
+
+                <button onclick="switchTab('semana5')" id="btn-semana5" class="tab-btn w-full flex items-center space-x-3 px-3 py-3 rounded-xl text-sm font-medium transition-all text-slate-400 hover:text-slate-200 hover:bg-slate-900/50">
+                    <i class="fa-solid fa-shield-halved text-base"></i>
+                    <span>Semana 5: Riesgo Asimétrico y Crypto</span>
+                </button>
+
+                <button onclick="switchTab('semana67')" id="btn-semana67" class="tab-btn w-full flex items-center space-x-3 px-3 py-3 rounded-xl text-sm font-medium transition-all text-slate-400 hover:text-slate-200 hover:bg-slate-900/50">
+                    <i class="fa-solid fa-robot text-base"></i>
+                    <span>Semanas 6-7: Bots y Copy Trading</span>
+                </button>
+            </nav>
+        </div>
+
+        <div class="p-4 border-t border-slate-800 bg-slate-900/20 text-center">
+            <p class="text-xs text-slate-500">&copy; 2026 JHARVAR FINANCE</p>
+            <p class="text-[10px] text-emerald-500/60 font-mono mt-1">Sistemas de Defensa Patrimonial v3.0</p>
+        </div>
+    </aside>
+
+    <main class="flex-1 flex flex-col overflow-y-auto custom-scrollbar bg-slate-950">
+        
+        <header class="h-16 border-b border-slate-800 bg-slate-900/40 px-8 flex items-center justify-between shrink-0">
+            <div class="flex items-center space-x-2">
+                <span class="text-xs font-semibold px-2 py-1 bg-slate-800 rounded-md text-slate-300 border border-slate-700">Entorno Virtual de Aprendizaje (AVA)</span>
+                <i class="fa-solid fa-chevron-right text-xs text-slate-600"></i>
+                <span id="header-breadcrumb" class="text-xs text-emerald-400 font-medium">Semana 3: Valoración de Renta Variable</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="text-right">
+                    <p class="text-xs text-slate-400">Moneda del Sistema</p>
+                    <p class="text-xs font-bold text-emerald-400 font-mono">COP ($) Pesos Colombianos</p>
+                </div>
+                <div class="h-8 w-px bg-slate-800"></div>
+                <img src="Logo Jharvar.jpeg" alt="Logo corporativo secundario" class="w-8 h-8 rounded-lg object-cover border border-slate-700" onerror="this.src='https://placehold.co/50x50/0f172a/10b981?text=J'"/>
+            </div>
+        </header>
+
+        <div class="p-8 space-y-12max-w-7xl mx-auto w-full pb-24">
+
+            <section id="semana3" class="tab-content active space-y-8 animate-fadeIn">
+                <div class="bg-gradient-to-r from-slate-900 to-slate-950 border border-slate-800 p-8 rounded-2xl relative overflow-hidden shadow-xl">
+                    <div class="absolute top-0 right-0 p-6 opacity-10 text-9xl font-bold font-mono select-none pointer-events-none text-slate-600">03</div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-emerald-400 px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full">Módulo de Estructura Financiera</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-3">Estructura del Mercado de Capitales</h2>
+                    <p class="text-slate-400 mt-2 max-w-3xl">Aprende la microestructura de captación de fondos corporativos y domina el cálculo algebraico para hallar el precio justo de acciones reales colombianas.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="lg:col-span-2 bg-slate-900/40 border border-slate-800 p-6 rounded-2xl space-y-4">
+                        <h3 class="text-lg font-bold text-white flex items-center space-x-2">
+                            <i class="fa-solid fa-gamepad text-emerald-400"></i>
+                            <span>El Enfoque de Combate (Para Estudiantes de 17 Años)</span>
+                        </h3>
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            Imagina que juegas al modo carrera de un videojuego de fútbol y quieres ser el dueño absoluto del club. Tienes dos opciones para conseguir dinero y mejorar el estadio: pedirle un préstamo gigante a un banco tradicional que te cobrará intereses fijos pase lo que pase en la liga, o venderle "acciones" (pequeños derechos de propiedad) directamente a los hinchas. Si vendes acciones, los hinchas se vuelven copropietarios del club. Si el equipo gana la copa y vende camisetas, las ganancias netas se reparten proporcionalmente entre esos hinchas: eso se llama **Dividendo**. Si el equipo desciende, el valor de mercado de su acción cae. El mercado de capitales es ese gran estadio tecnológico donde se compran y venden estos derechos en la vida real.
+                        </p>
+                    </div>
+                    <div class="bg-slate-900 border border-emerald-500/20 p-6 rounded-2xl flex flex-col justify-between shadow-lg shadow-emerald-950/20">
+                        <div>
+                            <h4 class="text-xs font-bold uppercase text-emerald-400 tracking-widest">Léxico Clave del Módulo</h4>
+                            <ul class="mt-4 space-y-3 text-xs">
+                                <li><strong class="text-white">Microestructura de Mercado:</strong> Software algorítmico (Libro de Órdenes) donde los precios cambian milisegundo a milisegundo por oferta y demanda.</li>
+                                <li><strong class="text-white">Renta Fija (TES y Bonos):</strong> Prestarle dinero al Gobierno Colombiano a cambio de un pagaré con un interés fijo periódico llamado Cupón.</li>
+                                <li><strong class="text-white">Renta Variable (Acciones):</strong> Ser dueño de una fracción de una empresa, ganando por la valorización del activo o los dividendos repartidos.</li>
+                            </ul>
+                        </div>
+                        <div class="pt-4 border-t border-slate-800 mt-4 text-[11px] font-mono text-slate-500">
+                            Powered by JHARVAR FINANCE Engine
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900/60 border border-slate-800 p-6 rounded-2xl space-y-4">
+                    <h3 class="text-lg font-bold text-white">Análisis Fundamental: El Modelo de Crecimiento Gordon-Shapiro</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Para evitar distorsiones visuales en el software educativo, estructuramos la fórmula matemática de valoración de renta variable de forma continua. El Modelo de Gordon-Shapiro determina el valor intrínseco teórico de una acción ($P_0$) expresado en pesos colombianos mediante la siguiente ecuación:
+                    </p>
+                    <div class="bg-slate-950 py-4 px-6 rounded-xl border border-slate-800 flex justify-center items-center text-xl font-mono text-emerald-400 shadow-inner">
+                        $$P_0 = \frac{D_1}{r - g}$$
+                    </div>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Los componentes de este algoritmo financiero se definen de manera unificada y estricta: la variable $P_0$ representa el precio justo intrínseco del activo en pesos colombianos; $D_1$ es el dividendo esperado para el siguiente año, derivado de multiplicar el último dividendo pagado ($D_0$) por el factor de crecimiento $(1 + g)$; la variable $r$ equivale a la tasa de retorno requerida exigida por el inversionista según el riesgo país (introducida en formato decimal); y $g$ corresponde a la tasa de crecimiento geométrico constante de los dividendos en el tiempo. Es una regla crítica del mercado que el retorno requerido ($r$) sea estrictamente mayor al crecimiento ($g$) para que el denominador no sea cero o negativo.
+                    </p>
+                </div>
+
+                <div class="my-4 text-center">
+                    
+                </div>
+
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl grid grid-cols-1 lg:grid-cols-12">
+                    <div class="p-6 lg:col-span-5 bg-slate-950/60 border-r border-slate-800 space-y-5">
+                        <h3 class="text-md font-bold text-white uppercase tracking-wider flex items-center space-x-2">
+                            <i class="fa-solid fa-sliders text-emerald-400"></i>
+                            <span>Consola de Parámetros BVC (COP)</span>
+                        </h3>
+                        
+                        <div class="space-y-1">
+                            <label class="text-xs text-slate-400 font-medium">Seleccionar Empresa de la Bolsa de Valores de Colombia</label>
+                            <select id="s3-empresa" onchange="updateS3Preset()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-sm font-medium text-white focus:outline-none focus:border-emerald-500">
+                                <option value="ecopetrol">Ecopetrol S.A. (Último Dividendo: $250 COP)</option>
+                                <option value="bancolombia">Bancolombia Pref. (Último Dividendo: $3.500 COP)</option>
+                            </select>
+                        </div>
+
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs">
+                                <label class="text-slate-400 font-medium">Tasa Requerida por Inversionista ($r$)</label>
+                                <span id="s3-lbl-r" class="text-emerald-400 font-bold font-mono">12.0%</span>
+                            </div>
+                            <input type="range" id="s3-rng-r" min="6" max="25" step="0.5" value="12" oninput="calculateGordon()" class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-500"/>
+                        </div>
+
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs">
+                                <label class="text-slate-400 font-medium">Crecimiento de Dividendos ($g$)</label>
+                                <span id="s3-lbl-g" class="text-emerald-400 font-bold font-mono">4.0%</span>
+                            </div>
+                            <input type="range" id="s3-rng-g" min="1" max="15" step="0.5" value="4" oninput="calculateGordon()" class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-500"/>
+                        </div>
+
+                        <div class="space-y-1">
+                            <label class="text-xs text-slate-400 font-medium">Precio Real de Mercado Actual (COP)</label>
+                            <input type="number" id="s3-precio-mercado" value="2150" oninput="calculateGordon()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm font-mono text-white focus:outline-none focus:border-emerald-500"/>
+                        </div>
+                    </div>
+
+                    <div class="p-8 lg:col-span-7 flex flex-col justify-between space-y-6">
+                        <div>
+                            <span class="text-[10px] font-mono text-slate-500 uppercase tracking-widest">Motor de Cálculo Fundamental JHARVAR</span>
+                            <div class="grid grid-cols-2 gap-4 mt-2">
+                                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                                    <p class="text-xs text-slate-400">Precio Justo Intrínseco</p>
+                                    <p id="s3-txt-justo" class="text-2xl font-black font-mono text-emerald-400 mt-1">$3.250 COP</p>
+                                </div>
+                                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                                    <p class="text-xs text-slate-400">Desviación de Mercado</p>
+                                    <p id="s3-txt-desviacion" class="text-2xl font-black font-mono text-emerald-400 mt-1">-33.8%</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="s3-banner-senal" class="p-4 rounded-xl border flex items-start space-x-3 bg-emerald-500/10 border-emerald-500/30 text-emerald-300">
+                            <i class="fa-solid fa-circle-check text-xl mt-0.5 shrink-0"></i>
+                            <div>
+                                <h4 class="text-sm font-bold">¡ACTIVO SUBVALORADO EN COP!</h4>
+                                <p class="text-xs opacity-90 mt-1">El precio de cotización en la BVC es inferior al valor intrínseco calculado por matemáticas financieras. Ofrece un amplio margen de seguridad para compras estratégicas.</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-950/40 p-4 rounded-xl border border-slate-800 text-xs text-slate-400 space-y-2">
+                            <p class="font-bold text-slate-300 uppercase tracking-wider"><i class="fa-solid fa-book-open text-emerald-500 mr-1"></i> Guía de Interacción del Estudiante:</p>
+                            <p><strong>Paso 1:</strong> Selecciona una empresa del menú desplegable para precargar los dividendos históricos reales indexados en COP.</p>
+                            <p><strong>Paso 2:</strong> Ajusta la barra deslizante de la Tasa Requerida ($r$) representando las exigencias de rentabilidad ante el riesgo del mercado local.</p>
+                            <p><strong>Paso 3:</strong> Modifica la barra de crecimiento ($g$) basándote en proyecciones económicas de inflación o expansión de la empresa.</p>
+                            <p><strong>Paso 4:</strong> Evalúa la señal dinámica del banner para determinar si es un momento óptimo de compra o si el mercado sobrevaloró el activo.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="semana4" class="tab-content space-y-8 animate-fadeIn">
+                <div class="bg-gradient-to-r from-slate-900 to-slate-950 border border-slate-800 p-8 rounded-2xl relative overflow-hidden shadow-xl">
+                    <div class="absolute top-0 right-0 p-6 opacity-10 text-9xl font-bold font-mono select-none pointer-events-none text-slate-600">04</div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-emerald-400 px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full">Módulo de Análisis Cuantitativo</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-3">Análisis Técnico e Indicadores Algorítmicos en Vivo</h2>
+                    <p class="text-slate-400 mt-2 max-w-3xl">Domina la lectura del electrocardiograma del dinero. Interpreta velas japonesas, medias móviles exponenciales e índices de fuerza relativa en tiempo real.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="lg:col-span-2 bg-slate-900/40 border border-slate-800 p-6 rounded-2xl space-y-4">
+                        <h3 class="text-lg font-bold text-white flex items-center space-x-2">
+                            <i class="fa-solid fa-wave-square text-emerald-400"></i>
+                            <span>El Enfoque de Combate (Para Estudiantes de 17 Años)</span>
+                        </h3>
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            ¿Cómo sabe un médico de urgencias si tu corazón funciona correctamente sin necesidad de abrirte el pecho? Utiliza un electrocardiógrafo que dibuja líneas y curvas en tiempo real basadas en tus pulsos eléctricos. En los mercados financieros, los gráficos de precios son exactamente el electrocardiograma del flujo monetario. El Análisis Técnico no consiste en predecir el futuro mediante magia o suposiciones vagas; consiste en aprender a leer las huellas visuales y matemáticas automatizadas que dejan grabadas miles de compradores y vendedores en una pantalla para determinar la probabilidad de movimiento de la masa inversora.
+                        </p>
+                    </div>
+                    <div class="bg-slate-900 border border-emerald-500/20 p-6 rounded-2xl flex flex-col justify-between shadow-lg">
+                        <div>
+                            <h4 class="text-xs font-bold uppercase text-emerald-400 tracking-widest">Léxico Clave del Módulo</h4>
+                            <ul class="mt-4 space-y-3 text-xs">
+                                <li><strong class="text-white">Velas Japonesas (Candlesticks):</strong> Bloques visuales de color verde (alcista) o rojo (bajista) que marcan la apertura, cierre, máximos y mínimos de precio en un periodo de tiempo.</li>
+                                <li><strong class="text-white">EMA (Media Móvil Exponencial):</strong> Línea matemática dinámica que promedia los cierres de precio dándole mayor peso algorítmico a los días más recientes.</li>
+                                <li><strong class="text-white">RSI (Índice de Fuerza Relativa):</strong> Oscilador de velocidad de precio de 0 a 100 que avisa matemáticamente quién domina el mercado.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900/60 border border-slate-800 p-6 rounded-2xl space-y-4">
+                    <h3 class="text-lg font-bold text-white">Lógica Matemática Matemática Avanzada del RSI</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        El Índice de Fuerza Relativa (RSI) se calcula estructurando la siguiente ecuación de oscilación continua para evitar quiebres o líneas huérfanas en los paneles visuales de JHARVAR FINANCE:
+                    </p>
+                    <div class="bg-slate-950 py-4 px-6 rounded-xl border border-slate-800 flex justify-center items-center text-xl font-mono text-emerald-400 shadow-inner">
+                        $$RSI = 100 - \left[ \frac{100}{1 + RS} \right]$$
+                    </div>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Donde el factor de Fuerza Relativa ($RS$) se determina dividiendo matemáticamente el promedio de los cierres en ganancia entre el promedio de los cierres en pérdida a lo largo de un marco muestral estándar de 14 sesiones operativas continuas. Un valor de RSI por encima de la zona de 70 indica un estado cuantitativo de Sobrecompra, alertando al estudiante que el precio ha subido con excesiva aceleración y es vulnerable a correcciones bajistas. Al contrario, un RSI por debajo de 30 marca un estado de Sobreventa, indicando un agotamiento vendedor que incrementa la probabilidad estadística de rebotes alcistas.
+                    </p>
+                </div>
+
+                <div class="my-4 text-center">
+                    
+                </div>
+
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+                    <div class="flex flex-wrap justify-between items-center gap-4 border-b border-slate-800 pb-4">
+                        <div>
+                            <h3 class="text-md font-bold text-white uppercase tracking-wider">Terminal de Gráficos Interactivos JHARVAR - Activo: ECOPETROL/COP</h3>
+                            <p class="text-xs text-slate-400">Simulación algorítmica basada en datos históricos ponderados localmente</p>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button onclick="toggleIndicator('ema')" id="btn-toggle-ema" class="px-3 py-1.5 bg-slate-800 border border-slate-700 text-xs rounded-xl font-medium text-slate-300 hover:bg-slate-700 transition">
+                                <i class="fa-solid fa-eye mr-1"></i> Superponer EMA 20 (Línea Azul)
+                            </button>
+                            <button onclick="triggerMarketShock()" class="px-3 py-1.5 bg-red-500/20 border border-red-500/40 text-xs rounded-xl font-medium text-red-300 hover:bg-red-500/40 transition">
+                                <i class="fa-solid fa-bolt mr-1"></i> Simular Shock de Mercado (Venta Masiva COP)
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                        <div class="lg:col-span-8 space-y-4">
+                            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 h-64 flex flex-col justify-between relative">
+                                <canvas id="chart-main"></canvas>
+                            </div>
+                            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 h-32 flex flex-col justify-between relative">
+                                <canvas id="chart-rsi"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-4 flex flex-col justify-between space-y-4 bg-slate-950/50 p-4 rounded-xl border border-slate-800">
+                            <div>
+                                <h4 class="text-xs font-bold uppercase text-slate-400 tracking-wider">Alertas del Scanner Algorítmico</h4>
+                                <div id="s4-alert-box" class="mt-2 p-3 bg-slate-900 border border-slate-800 rounded-xl space-y-1">
+                                    <p class="text-xs font-bold text-yellow-400"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Estado: Consolidación</p>
+                                    <p class="text-[11px] text-slate-400">El precio de Ecopetrol oscila estable cerca de los $2.200 COP. Monitoree el indicador RSI.</p>
+                                </div>
+
+                                <div class="mt-4 grid grid-cols-2 gap-2 text-xs font-mono">
+                                    <div class="bg-slate-900 p-2 rounded-lg border border-slate-800">
+                                        <span class="block text-[10px] text-slate-500">ÚLTIMO PRECIO</span>
+                                        <span id="s4-val-precio" class="text-white font-bold">$2.200 COP</span>
+                                    </div>
+                                    <div class="bg-slate-900 p-2 rounded-lg border border-slate-800">
+                                        <span class="block text-[10px] text-slate-500">VALOR RSI</span>
+                                        <span id="s4-val-rsi" class="text-yellow-400 font-bold">50.0</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800 text-[11px] text-slate-400 space-y-1.5">
+                                <p class="font-bold text-slate-300 uppercase"><i class="fa-solid fa-list-check text-emerald-400 mr-1"></i> Guía Operativa de Análisis Técnico:</p>
+                                <p><strong>1. Auditar Líneas:</strong> Enciende la EMA 20. Observa cómo suaviza la acción del precio en pesos colombianos.</p>
+                                <p><strong>2. Detectar Extremos:</strong> Haz clic en 'Shock de Mercado'. Verás caer los precios y desplomarse el RSI a zona de sobreventa.</p>
+                                <p><strong>3. Regla de Entrada:</strong> Cuando el RSI caiga por debajo de 30 en el panel inferior, simula una compra analizando la probabilidad de rebote.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="semana5" class="tab-content space-y-8 animate-fadeIn">
+                <div class="bg-gradient-to-r from-slate-900 to-slate-950 border border-slate-800 p-8 rounded-2xl relative overflow-hidden shadow-xl">
+                    <div class="absolute top-0 right-0 p-6 opacity-10 text-9xl font-bold font-mono select-none pointer-events-none text-slate-600">05</div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-emerald-400 px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full">Módulo de Gestión de Capital</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-3">Criptoactivos, Blockchain y Riesgo Asimétrico</h2>
+                    <p class="text-slate-400 mt-2 max-w-3xl">Aprende la matemática exacta detrás del tamaño de posición. Protege tu capital en pesos colombianos frente a la volatilidad del ecosistema criptográfico.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="lg:col-span-2 bg-slate-900/40 border border-slate-800 p-6 rounded-2xl space-y-4">
+                        <h3 class="text-lg font-bold text-white flex items-center space-x-2">
+                            <i class="fa-solid fa-vault text-emerald-400"></i>
+                            <span>El Enfoque de Combate (Para Estudiantes de 17 Años)</span>
+                        </h3>
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            Imagina que juegas una partida de un videojuego de supervivencia extrema. Tienes dos formas de encarar el juego: meter todas tus armas y monedas de oro dentro de una sola mochila de exploración y salir directo a pelear contra el jefe final (donde si cometes un error mueres, pierdes todo el inventario y quedas eliminado para siempre), o resguardar con disciplina el 95% de tus recursos en el cofre fuerte de tu base segura y salir a explorar el mapa desconocido arriesgando únicamente el 5% en busca de un tesoro legendario. Si pierdes ese 5%, no pasa nada, sigues con vida en el servidor. Si ese 5% encuentra el botín, multiplicas tu inventario global por 20 veces. Eso es la **Gestión del Riesgo Asimétrico**: controlar milimétricamente las pérdidas para que jamás te expulsen del mercado, manteniendo abierta la ventana a ganancias exponenciales.
+                        </p>
+                    </div>
+                    <div class="bg-slate-900 border border-emerald-500/20 p-6 rounded-2xl flex flex-col justify-between shadow-lg">
+                        <div>
+                            <h4 class="text-xs font-bold uppercase text-emerald-400 tracking-widest">Léxico Clave del Módulo</h4>
+                            <ul class="mt-4 space-y-3 text-xs">
+                                <li><strong class="text-white">Blockchain:</strong> Libro contable digital contundente, descentralizado e inmutable donde ninguna transacción puede duplicarse o falsificarse.</li>
+                                <li><strong class="text-white">Position Sizing:</strong> Cálculo matemático estricto que dicta cuánto dinero exacto inyectar en una operación según tu tolerancia al riesgo.</li>
+                                <li><strong class="text-white">Riesgo Asimétrico:</strong> Relación operativa donde la pérdida máxima conocida es diminuta en comparación al beneficio potencial.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900/60 border border-slate-800 p-6 rounded-2xl space-y-4">
+                    <h3 class="text-lg font-bold text-white">Algoritmo Matemático de Regulación de Capital (Position Sizing)</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Para impedir saltos de línea incorrectos en la maquetación de los dashboards web, se expone de forma integrada el modelo matemático matemático que define el cinturón de seguridad del trader profesional. El Tamaño de la Posición Algorítmica ($Tamaño$) expresado en unidades del activo criptográfico se calcula mediante la siguiente formulación estructural:
+                    </p>
+                    <div class="bg-slate-950 py-4 px-6 rounded-xl border border-slate-800 flex justify-center items-center text-xl font-mono text-emerald-400 shadow-inner">
+                        $$Tamaño = \frac{Capital \times Riesgo\%}{Precio_{\text{Entrada}} - Precio_{\text{StopLoss}}}$$
+                    </div>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        En esta estructura de control de pérdidas, el $Capital$ representa el dinero líquido total de la cuenta en pesos colombianos; el $Riesgo\%$ es la métrica de pérdida máxima permitida por operación (parametrizada con disciplina estricta entre el 1% y el 2% del total patrimonial); el $Precio_{\text{Entrada}}$ fija el valor de cotización en COP donde se ejecuta la compra; y el $Precio_{\text{StopLoss}}$ determina el precio de venta de emergencia automatizado en el código para cortar pérdidas inmediatamente si el mercado local evoluciona de manera adversa.
+                    </p>
+                </div>
+
+                <div class="my-4 text-center">
+                    
+                </div>
+
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl grid grid-cols-1 lg:grid-cols-12">
+                    <div class="p-6 lg:col-span-5 bg-slate-950/60 border-r border-slate-800 space-y-4">
+                        <h3 class="text-md font-bold text-white uppercase tracking-wider flex items-center space-x-2">
+                            <i class="fa-solid fa-calculator text-emerald-400"></i>
+                            <span>Calculadora de Mitigación Antirruina JHARVAR</span>
+                        </h3>
+
+                        <div class="space-y-1">
+                            <label class="text-xs text-slate-400 font-medium">Capital Total Líquido de la Cuenta (COP)</label>
+                            <input type="number" id="s5-capital" value="5000000" oninput="runPositionSizing()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm font-mono text-white focus:outline-none focus:border-emerald-500"/>
+                            <span class="text-[10px] text-slate-500">Ejemplo: Una cuenta de ahorro educativa de $5.000.000 COP</span>
+                        </div>
+
+                        <div class="space-y-1">
+                            <label class="text-xs text-slate-400 font-medium">Porcentaje Máximo de Riesgo Permitido (%)</label>
+                            <select id="s5-riesgo" onchange="runPositionSizing()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500">
+                                <option value="1">1% de Riesgo Profesional (Conservador)</option>
+                                <option value="2" selected>2% de Riesgo Profesional (Estándar)</option>
+                                <option value="5">5% de Riesgo Agresivo (Alto Riesgo)</option>
+                            </select>
+                        </div>
+
+                        <div class="space-y-1">
+                            <label class="text-xs text-slate-400 font-medium">Precio de Entrada de Bitcoin (Indexado a COP)</label>
+                            <input type="number" id="s5-entrada" value="240000000" oninput="runPositionSizing()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm font-mono text-white focus:outline-none focus:border-emerald-500"/>
+                        </div>
+
+                        <div class="space-y-1">
+                            <label class="text-xs text-slate-400 font-medium">Precio de Salida de Emergencia (Stop Loss en COP)</label>
+                            <input type="number" id="s5-stop" value="232000000" oninput="runPositionSizing()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm font-mono text-white focus:outline-none focus:border-emerald-500"/>
+                        </div>
+                    </div>
+
+                    <div class="p-8 lg:col-span-7 flex flex-col justify-between space-y-6">
+                        <div>
+                            <span class="text-[10px] font-mono text-slate-500 uppercase tracking-widest">Resultados de Mitigación de Pérdida Colectiva</span>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
+                                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                                    <p class="text-xs text-slate-400">Presupuesto en Riesgo</p>
+                                    <p id="s5-txt-presupuesto" class="text-md font-bold font-mono text-red-400 mt-1">$100.000 COP</p>
+                                </div>
+                                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                                    <p class="text-xs text-slate-400">Tamaño Máximo Sugerido</p>
+                                    <p id="s5-txt-unidades" class="text-md font-bold font-mono text-emerald-400 mt-1">0.0125 BTC</p>
+                                </div>
+                                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                                    <p class="text-xs text-slate-400">Capital Asignado a Operar</p>
+                                    <p id="s5-txt-exposicion" class="text-md font-bold font-mono text-slate-300 mt-1">$3.000.000 COP</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="s5-banner-resultado" class="p-4 rounded-xl border bg-emerald-500/10 border-emerald-500/30 text-emerald-300 flex items-start space-x-3">
+                            <i class="fa-solid fa-shield-halved text-xl mt-0.5 shrink-0"></i>
+                            <div>
+                                <h4 class="text-sm font-bold">CONFIGURACIÓN ASIMÉTRICA OPTIMIZADA</h4>
+                                <p class="text-xs opacity-90 mt-1">Si el precio de Bitcoin cae a $232.000.000 COP, el software cortará la operación automáticamente. Perderás exactamente $100.000 COP (2% de tu cuenta), blindando el resto de tus $4.900.000 COP para futuras oportunidades operativas.</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-950/40 p-4 rounded-xl border border-slate-800 text-xs text-slate-400 space-y-1">
+                            <p class="font-bold text-slate-300 uppercase"><i class="fa-solid fa-terminal text-emerald-400 mr-1"></i> Guía del Alumno Paso a Paso:</p>
+                            <p><strong>Paso 1:</strong> Digita el capital real en COP de tu cartera de pruebas en el simulador.</p>
+                            <p><strong>Paso 2:</strong> Fija la métrica de riesgo al 2% para activar las ecuaciones de protección algorítmica.</p>
+                            <p><strong>Paso 3:</strong> Ingresa el precio de entrada del token y define el Stop Loss basándote en soportes técnicos previos.</p>
+                            <p><strong>Paso 4:</strong> Ejecuta únicamente la cantidad de unidades calculadas en el panel para evitar liquidaciones destructivas.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="semana67" class="tab-content space-y-8 animate-fadeIn">
+                <div class="bg-gradient-to-r from-slate-900 to-slate-950 border border-slate-800 p-8 rounded-2xl relative overflow-hidden shadow-xl">
+                    <div class="absolute top-0 right-0 p-6 opacity-10 text-9xl font-bold font-mono select-none pointer-events-none text-slate-600">06-07</div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-emerald-400 px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full">Módulo de Automatización y Auditoría</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-3">Automatización Algorítmica (Bots de Malla) y Copy Trading</h2>
+                    <p class="text-slate-400 mt-2 max-w-3xl">Programa algoritmos mecánicos que capturan micro-ganancias de volatilidad y audita con rigor científico cuentas institucionales en entornos reales.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="lg:col-span-2 bg-slate-900/40 border border-slate-800 p-6 rounded-2xl space-y-4">
+                        <h3 class="text-lg font-bold text-white flex items-center space-x-2">
+                            <i class="fa-solid fa-gears text-emerald-400"></i>
+                            <span>El Enfoque de Combate (Para Estudiantes de 17 Años)</span>
+                        </h3>
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            ¿Te imaginas tener que permanecer despierto las 24 horas del día, pegado de forma maníaca a la pantalla de tu computador, intentando comprar manualmente cada vez que el precio de un activo baje $500 pesos y vendiendo inmediatamente cuando suba otros $500 pesos? Te agotarías mentalmente en menos de dos días. Para resolver esto nació la automatización mediante código. Configurar un **Bot de Grid Trading (Mallas)** es el equivalente exacto a construir un robot pescador automatizado. Diseñas estratégicamente una red con múltiples anzuelos distribuidos a diferentes profundidades fijas del río: cuando la marea de precios baja, el robot compra de manera automatizada; cuando la marea sube, vende el activo y embolsa la ganancia. Tú puedes estar durmiendo o en clase en el colegio, y tu software sigue capturando centavos de forma incansable en el mercado.
+                        </p>
+                    </div>
+                    <div class="bg-slate-900 border border-emerald-500/20 p-6 rounded-2xl flex flex-col justify-between shadow-lg">
+                        <div>
+                            <h4 class="text-xs font-bold uppercase text-emerald-400 tracking-widest">Léxico Clave del Módulo</h4>
+                            <ul class="mt-4 space-y-3 text-xs">
+                                <li><strong class="text-white">Grid Trading:</strong> Estrategia automatizada que coloca una cuadrícula de órdenes límite de compra y venta a intervalos simétricos.</li>
+                                <li><strong class="text-white">Límites de la Malla:</strong> Fronteras geográficas de precio. Si el mercado se desborda fuera de ellas, el bot frena operaciones por seguridad.</li>
+                                <li><strong class="text-white">Copy Trading:</strong> Vinculación directa de tu cuenta a las ejecuciones operativas en tiempo real de un Master Trader certificado.</li>
+                                <li><strong class="text-white">Max Drawdown (DD%):</strong> Métrica crítica que mide la peor racha de pérdidas consecutivas históricas de un gestor de capital.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900/60 border border-slate-800 p-6 rounded-2xl space-y-4">
+                    <h3 class="text-lg font-bold text-white">Lógica Matemática de Configuración de la Red</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        El espacio geométrico y operativo de un Bot de Grid Trading aritmético se estructura dividiendo el rango total de precios de forma equitativa. El Ancho de Banda de la Malla ($\Delta P$) que separa cada orden automática se calcula mediante la siguiente ecuación lineal continua:
+                    </p>
+                    <div class="bg-slate-950 py-4 px-6 rounded-xl border border-slate-800 flex justify-center items-center text-xl font-mono text-emerald-400 shadow-inner">
+                        $$\Delta P = \frac{Precio_{\text{Superior}} - Precio_{\text{Inferior}}}{N}$$
+                    </div>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Donde $Precio_{\text{Superior}}$ representa el techo límite donde el bot ejecuta su última orden de venta programada; $Precio_{\text{Inferior}}$ determina el piso de soporte final donde detiene sus compras automáticas; y $N$ equivale al número total de grillas o niveles inyectados en la base de datos de control del software. La ganancia bruta por grilla se calcula de forma continua restando los cobros de corretaje de la plataforma de intercambio.
+                    </p>
+                </div>
+
+                <div class="my-4 text-center">
+                    
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    
+                    <div class="lg:col-span-6 bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-5 shadow-xl">
+                        <div class="border-b border-slate-800 pb-3 flex items-center space-x-2">
+                            <i class="fa-solid fa-robot text-emerald-400"></i>
+                            <h3 class="text-sm font-bold uppercase tracking-wider text-white">Terminal Bot de Grid Aritmético (JHARVAR FINANCE)</h3>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="space-y-1">
+                                <label class="text-[11px] text-slate-400">Piso de Malla (COP)</label>
+                                <input type="number" id="s6-piso" value="10000000" oninput="runGridSimulation()" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs font-mono text-white focus:outline-none focus:border-emerald-500"/>
+                            </div>
+                            <div class="space-y-1">
+                                <label class="text-[11px] text-slate-400">Techo de Malla (COP)</label>
+                                <input type="number" id="s6-techo" value="14000000" oninput="runGridSimulation()" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs font-mono text-white focus:outline-none focus:border-emerald-500"/>
+                            </div>
+                        </div>
+
+                        <div class="space-y-1">
+                            <label class="text-[11px] text-slate-400">Número Total de Grillas Deseadas ($N$)</label>
+                            <input type="number" id="s6-grillas" value="10" min="2" max="50" oninput="runGridSimulation()" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs font-mono text-white focus:outline-none focus:border-emerald-500"/>
+                        </div>
+
+                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2">
+                            <div class="flex justify-between text-xs font-mono">
+                                <span class="text-slate-400">Distancia de Órdenes ($\Delta P$):</span>
+                                <span id="s6-txt-distancia" class="text-emerald-400 font-bold">$400.000 COP</span>
+                            </div>
+                            <div class="flex justify-between text-xs font-mono">
+                                <span class="text-slate-400">Rentabilidad Estimada por Grilla:</span>
+                                <span class="text-emerald-400 font-bold">3.24% Neto</span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">Mapa de Profundidad de Órdenes del Bot</p>
+                            <div id="s6-grid-orders-container" class="max-h-36 overflow-y-auto custom-scrollbar space-y-1.5 pr-2">
+                                </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-6 bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-5 shadow-xl">
+                        <div class="border-b border-slate-800 pb-3 flex items-center space-x-2">
+                            <i class="fa-solid fa-users-viewfinder text-emerald-400"></i>
+                            <h3 class="text-sm font-bold uppercase tracking-wider text-white">Módulo de Auditoría de Copy Trading</h3>
+                        </div>
+
+                        <p class="text-xs text-slate-400">Analiza perfiles simulados de Master Traders reales de la industria. Aprende a filtrar el riesgo antes de vincular tu capital real.</p>
+                        
+                        <div class="space-y-3">
+                            <div class="bg-slate-950 p-4 rounded-xl border border-red-500/20 hover:border-red-500/40 transition flex justify-between items-center">
+                                <div class="space-y-1">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                                        <h4 class="text-xs font-bold text-white">Alfa Algorítmico Pro</h4>
+                                    </div>
+                                    <div class="flex space-x-4 text-[11px] font-mono">
+                                        <div><span class="text-slate-500">ROI ANUAL:</span> <span class="text-emerald-400 font-bold">+145.2%</span></div>
+                                        <div><span class="text-slate-500">MAX DRAWDOWN:</span> <span class="text-red-400 font-bold">-42.8%</span></div>
+                                    </div>
+                                </div>
+                                <button onclick="selectTrader('alfa')" class="px-3 py-1.5 bg-red-500/10 border border-red-500/30 rounded-lg text-[11px] font-bold text-red-300 hover:bg-red-500/20 transition">Auditar Perfil</button>
+                            </div>
+
+                            <div class="bg-slate-950 p-4 rounded-xl border border-emerald-500/20 hover:border-emerald-500/40 transition flex justify-between items-center">
+                                <div class="space-y-1">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                                        <h4 class="text-xs font-bold text-white">Delta Consistencia Tradicional</h4>
+                                    </div>
+                                    <div class="flex space-x-4 text-[11px] font-mono">
+                                        <div><span class="text-slate-500">ROI ANUAL:</span> <span class="text-emerald-400 font-bold">+41.5%</span></div>
+                                        <div><span class="text-slate-500">MAX DRAWDOWN:</span> <span class="text-emerald-400 font-bold">-7.4%</span></div>
+                                    </div>
+                                </div>
+                                <button onclick="selectTrader('delta')" class="px-3 py-1.5 bg-emerald-500/10 border border-emerald-500/30 rounded-lg text-[11px] font-bold text-emerald-300 hover:bg-emerald-500/20 transition">Auditar Perfil</button>
+                            </div>
+                        </div>
+
+                        <div id="s6-audit-diagnostic" class="p-4 bg-slate-950 rounded-xl border border-slate-800 text-xs text-slate-400 space-y-1.5">
+                            <p class="font-bold text-slate-200"><i class="fa-solid fa-microscope text-emerald-400 mr-1"></i> Dictamen del Scanner Técnico JHARVAR:</p>
+                            <p>Por favor, haz clic en el botón "Auditar Perfil" de cualquier operador para desplegar el diagnóstico computarizado del sistema de protección patrimonial.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl text-xs text-slate-400 space-y-2">
+                    <p class="font-bold text-slate-200 uppercase tracking-wider"><i class="fa-solid fa-network-wired text-emerald-400 mr-1"></i> Guía Operativa de Interacción Paso a Paso (Semanas 6 y 7):</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-[11px] leading-relaxed">
+                        <div class="space-y-1">
+                            <p class="text-slate-300 font-semibold">Para Automatización con Bots de Malla:</p>
+                            <p><strong>Paso 1:</strong> Fija el rango operativo configurando el 'Piso' y el 'Techo' en pesos colombianos.</p>
+                            <p><strong>Paso 2:</strong> Introduce el número de grillas. El algoritmo dividirá el espacio calculando el diferencial lineal $\Delta P$.</p>
+                            <p><strong>Paso 3:</strong> Revisa el Mapa de Profundidad para observar dónde se inyectarán tus órdenes de compra límite automáticas.</p>
+                        </div>
+                        <div class="space-y-1">
+                            <p class="text-slate-300 font-semibold">Para Auditoría de Cuentas de Inversión Social:</p>
+                            <p><strong>Paso 1:</strong> Navega por las tarjetas de Master Traders públicos de la red de intercambio Pionex.</p>
+                            <p><strong>Paso 2:</strong> Ignora temporalmente el ROI llamativo y evalúa con rigor el 'Max Drawdown' histórico.</p>
+                            <p><strong>Paso 3:</strong> Haz clic en auditar perfil para leer el veredicto del algoritmo y simular de forma segura la copia operativa de cuentas.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // CONFIGURACIÓN DE NAVEGACIÓN ENTRE PESTAÑAS (SPA)
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('text-emerald-400', 'bg-slate-900', 'border', 'border-emerald-500/20', 'shadow-md');
+                btn.classList.add('text-slate-400', 'hover:text-slate-200', 'hover:bg-slate-900/50');
+            });
+
+            document.getElementById(tabId).classList.add('active');
+            const clickedBtn = document.getElementById('btn-' + tabId);
+            clickedBtn.classList.remove('text-slate-400', 'hover:text-slate-200', 'hover:bg-slate-900/50');
+            clickedBtn.classList.add('text-emerald-400', 'bg-slate-900', 'border', 'border-emerald-500/20', 'shadow-md');
+
+            // Actualización de Migas de Pan dinámicas
+            const breadcrumb = document.getElementById('header-breadcrumb');
+            if (tabId === 'semana3') breadcrumb.innerText = "Semana 3: Mercado de Capitales y Gordon-Shapiro";
+            if (tabId === 'semana4') breadcrumb.innerText = "Semana 4: Análisis Técnico Cuantitativo y RSI";
+            if (tabId === 'semana5') breadcrumb.innerText = "Semana 5: Criptoactivos y Cajas de Riesgo Asimétrico";
+            if (tabId === 'semana67') breadcrumb.innerText = "Semanas 6-7: Bots de Malla Automáticos y Auditoría Social";
+        }
+
+        // ========================================================
+        // LOGICA DE RESTRICCIÓN Y SIMULACIÓN SEMANA 3
+        // ========================================================
+        const presetsS3 = {
+            ecopetrol: { div: 250, mercado: 2150 },
+            bancolombia: { div: 3500, mercado: 38200 }
+        };
+
+        function updateS3Preset() {
+            const selected = document.getElementById('s3-empresa').value;
+            document.getElementById('s3-precio-market').value = presetsS3[selected].mercado;
+            calculateGordon();
+        }
+
+        function calculateGordon() {
+            const empresa = document.getElementById('s3-empresa').value;
+            const r_val = parseFloat(document.getElementById('s3-rng-r').value) / 100;
+            const g_val = parseFloat(document.getElementById('s3-rng-g').value) / 100;
+            const precio_mercado = parseFloat(document.getElementById('s3-precio-mercado').value) || 0;
+
+            document.getElementById('s3-lbl-r').innerText = (r_val * 100).toFixed(1) + '%';
+            document.getElementById('s3-lbl-g').innerText = (g_val * 100).toFixed(1) + '%';
+
+            const txtJusto = document.getElementById('s3-txt-justo');
+            const txtDesviacion = document.getElementById('s3-txt-desviacion');
+            const banner = document.getElementById('s3-banner-senal');
+
+            if (r_val <= g_val) {
+                txtJusto.innerText = "Error Matemático";
+                txtJusto.className = "text-xl font-bold font-mono text-red-400 mt-1";
+                txtDesviacion.innerText = "N/A";
+                banner.className = "p-4 rounded-xl border bg-red-500/10 border-red-500/30 text-red-300 flex items-start space-x-3";
+                banner.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-xl mt-0.5 shrink-0"></i><div><h4 class="text-sm font-bold">RESTRICCIÓN VIOLADA ($r \leq g$)</h4><p class="text-xs opacity-90 mt-1">La tasa requerida por el alumno debe ser estrictamente superior al crecimiento estimado de dividendos corporativos para que el algoritmo sea viable.</p></div>`;
+                return;
+            }
+
+            const d0 = empresa === 'ecopetrol' ? 250 : 3500;
+            const d1 = d0 * (1 + g_val);
+            const precio_justo = d1 / (r_val - g_val);
+
+            txtJusto.innerText = `$${Math.round(precio_justo).toLocaleString()} COP`;
+            txtJusto.className = "text-2xl font-black font-mono text-emerald-400 mt-1";
+
+            const desviacion = ((precio_mercado - precio_justo) / precio_justo) * 100;
+            txtDesviacion.innerText = (desviacion > 0 ? '+' : '') + desviacion.toFixed(1) + '%';
+
+            if (precio_mercado < precio_justo) {
+                txtDesviacion.className = "text-2xl font-black font-mono text-emerald-400 mt-1";
+                banner.className = "p-4 rounded-xl border bg-emerald-500/10 border-emerald-500/30 text-emerald-300 flex items-start space-x-3";
+                banner.innerHTML = `<i class="fa-solid fa-circle-check text-xl mt-0.5 shrink-0"></i><div><h4 class="text-sm font-bold">¡ACTIVO SUBVALORADO EN COP!</h4><p class="text-xs opacity-90 mt-1">El precio de mercado es menor al valor intrínseco teórico. El software detecta una ventana de oportunidad de compra táctica en la Bolsa de Valores de Colombia.</p></div>`;
+            } else {
+                txtDesviacion.className = "text-2xl font-black font-mono text-red-400 mt-1";
+                banner.className = "p-4 rounded-xl border bg-red-500/10 border-red-500/30 text-red-300 flex items-start space-x-3";
+                banner.innerHTML = `<i class="fa-solid fa-ban text-xl mt-0.5 shrink-0"></i><div><h4 class="text-sm font-bold">EVITAR COMPRAS - ACTIVO SOBREVALORADO</h4><p class="text-xs opacity-90 mt-1">La masa especulativa ha inflado el precio por encima de sus flujos reales de dividendos en pesos colombianos. Alto riesgo de corrección de portafolio.</p></div>`;
+            }
+        }
+
+        // ========================================================
+        // LOGICA DE CONFIGURACIÓN Y RENDER DE GRÁFICOS SEMANA 4
+        // ========================================================
+        let chartMain, chartRsi;
+        let showingEma = false;
+
+        const basePrices = [2180, 2190, 2210, 2200, 2230, 2220, 2250, 2240, 2210, 2200, 2195, 2200];
+        const baseEma = [2175, 2182, 2191, 2195, 2202, 2208, 2218, 2224, 2220, 2215, 2210, 2208];
+        const baseRsi = [45, 48, 56, 52, 64, 61, 72, 68, 41, 38, 36, 50];
+        const labelsS4 = ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "Post", "D+1", "Cierre"];
+
+        function initCharts() {
+            const ctxMain = document.getElementById('chart-main').getContext('2d');
+            chartMain = new Chart(ctxMain, {
+                type: 'line',
+                data: {
+                    labels: labelsS4,
+                    datasets: [{
+                        label: 'Precio Ecopetrol (COP)',
+                        data: basePrices,
+                        borderColor: '#10b981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.05)',
+                        tension: 0.1,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { grid: { color: '#1e293b' }, ticks: { color: '#94a3b8', font: { size: 10 } } },
+                        y: { grid: { color: '#1e293b' }, ticks: { color: '#94a3b8', font: { size: 10 } } }
+                    }
+                }
+            });
+
+            const ctxRsi = document.getElementById('chart-rsi').getContext('2d');
+            chartRsi = new Chart(ctxRsi, {
+                type: 'line',
+                data: {
+                    labels: labelsS4,
+                    datasets: [{
+                        label: 'Oscilador RSI',
+                        data: baseRsi,
+                        borderColor: '#f59e0b',
+                        borderWidth: 2,
+                        tension: 0.1,
+                        pointRadius: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { grid: { color: '#1e293b' }, ticks: { color: '#94a3b8', font: { size: 10 } } },
+                        y: { min: 0, max: 100, grid: { color: '#334155' }, ticks: { color: '#94a3b8', font: { size: 9 } } }
+                    }
+                }
+            });
+        }
+
+        function toggleIndicator(type) {
+            if (type === 'ema') {
+                showingEma = !showingEma;
+                const btn = document.getElementById('btn-toggle-ema');
+                if (showingEma) {
+                    chartMain.data.datasets.push({
+                        label: 'EMA 20',
+                        data: baseEma,
+                        borderColor: '#3b82f6',
+                        borderDash: [5, 5],
+                        pointRadius: 0,
+                        tension: 0.1
+                    });
+                    btn.className = "px-3 py-1.5 bg-blue-500/20 border border-blue-500/40 text-xs rounded-xl font-medium text-blue-300";
+                } else {
+                    chartMain.data.datasets.pop();
+                    btn.className = "px-3 py-1.5 bg-slate-800 border border-slate-700 text-xs rounded-xl font-medium text-slate-300";
+                }
+                chartMain.update();
+            }
+        }
+
+        function triggerMarketShock() {
+            chartMain.data.datasets[0].data = [2200, 2150, 2110, 2050, 1980, 1920, 1900, 1910, 1920, 1930, 1940, 1950];
+            chartRsi.data.datasets[0].data = [48, 40, 32, 25, 18, 14, 12, 19, 24, 28, 33, 38];
+            
+            if (showingEma) {
+                chartMain.data.datasets[1].data = [2180, 2160, 2130, 2100, 2060, 2020, 1980, 1960, 1950, 1945, 1942, 1940];
+            }
+            
+            chartMain.update();
+            chartRsi.update();
+
+            document.getElementById('s4-val-precio').innerText = "$1.950 COP";
+            document.getElementById('s4-val-rsi').innerText = "14.2";
+            document.getElementById('s4-val-rsi').className = "text-red-400 font-bold font-mono";
+
+            const alertBox = document.getElementById('s4-alert-box');
+            alertBox.innerHTML = `<p class="text-xs font-bold text-red-400"><i class="fa-solid fa-circle-exclamation mr-1"></i> CRASH DETECTADO: SOBREVENTA EXTREMA</p><p class="text-[11px] text-slate-300">Pánico en el mercado local. RSI en 14.2 indica que el algoritmo barrió las paradas de pérdida en COP. Alta probabilidad matemática de rebote de corto plazo.</p>`;
+        }
+
+        // ========================================================
+        // LOGICA DE MATRICES DE MITIGACIÓN SEMANA 5
+        // ========================================================
+        function runPositionSizing() {
+            const capital = parseFloat(document.getElementById('s5-capital').value) || 0;
+            const riesgoPct = parseFloat(document.getElementById('s5-riesgo').value) / 100;
+            const entrada = parseFloat(document.getElementById('s5-entrada').value) || 0;
+            const stop = parseFloat(document.getElementById('s5-stop').value) || 0;
+
+            const txtPresupuesto = document.getElementById('s5-txt-presupuesto');
+            const txtUnidades = document.getElementById('s5-txt-unidades');
+            const txtExposicion = document.getElementById('s5-txt-exposicion');
+            const banner = document.getElementById('s5-banner-resultado');
+
+            const dineroEnRiesgo = capital * riesgoPct;
+            txtPresupuesto.innerText = `$${Math.round(dineroEnRiesgo).toLocaleString()} COP`;
+
+            if (entrada <= stop) {
+                txtUnidades.innerText = "Error Lógico";
+                txtExposicion.innerText = "Error Lógico";
+                banner.className = "p-4 rounded-xl border bg-red-500/10 border-red-500/30 text-red-300 flex items-start space-x-3";
+                banner.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-xl mt-0.5 shrink-0"></i><div><h4 class="text-sm font-bold">STOP LOSS INVÁLIDO</h4><p class="text-xs opacity-90 mt-1">El precio de salida de emergencia (Stop Loss) debe ser inferior al precio de entrada configurado para compras en pesos colombianos.</p></div>`;
+                return;
+            }
+
+            const diffPrecio = entrada - stop;
+            const unidadesSugeridas = dineroEnRiesgo / diffPrecio;
+            const exposicionCapital = unidadesSugeridas * entrada;
+
+            txtUnidades.innerText = unidadesSugeridas.toFixed(6) + " Unidades";
+            txtExposicion.innerText = `$${Math.round(exposicionCapital).toLocaleString()} COP`;
+
+            if (exposicionCapital > capital) {
+                banner.className = "p-4 rounded-xl border bg-yellow-500/10 border-yellow-500/30 text-yellow-300 flex items-start space-x-3";
+                banner.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-xl mt-0.5 shrink-0"></i><div><h4 class="text-sm font-bold">ALERTA DE APALANCAMIENTO EXTREMO</h4><p class="text-xs opacity-90 mt-1">Para sostener esta operación manteniendo el riesgo al ${riesgoPct*100}%, el software detecta que la exposición necesaria ($${Math.round(exposicionCapital).toLocaleString()} COP) supera tu capital total. Se requiere apalancamiento sintético o ampliar el Stop Loss.</p></div>`;
+            } else {
+                banner.className = "p-4 rounded-xl border bg-emerald-500/10 border-emerald-500/30 text-emerald-300 flex items-start space-x-3";
+                banner.innerHTML = `<i class="fa-solid fa-shield-halved text-xl mt-0.5 shrink-0"></i><div><h4 class="text-sm font-bold">CONFIGURACIÓN ASIMÉTRICA OPTIMIZADA</h4><p class="text-xs opacity-90 mt-1">Si el precio del criptoactivo se desploma y toca los $${stop.toLocaleString()} COP, las órdenes automatizadas liquidarán tu posición. Perderás exactamente $${Math.round(dineroEnRiesgo).toLocaleString()} COP, dejando blindados tus $${Math.round(capital - dineroEnRiesgo).toLocaleString()} COP para mantenerte vivo en el juego.</p></div>`;
+            }
+        }
+
+        // ========================================================
+        // LOGICA DE BOTS Y TRADING SOCIAL SEMANA 6 Y 7
+        // ========================================================
+        function runGridSimulation() {
+            const piso = parseFloat(document.getElementById('s6-piso').value) || 0;
+            const techo = parseFloat(document.getElementById('s6-techo').value) || 0;
+            const grillas = parseInt(document.getElementById('s6-grillas').value) || 2;
+
+            const txtDistancia = document.getElementById('s6-txt-distancia');
+            const container = document.getElementById('s6-grid-orders-container');
+
+            if (piso >= techo) {
+                txtDistancia.innerText = "Error de Límites";
+                container.innerHTML = `<p class="text-xs text-red-400">El precio piso debe ser estrictamente menor al techo.</p>`;
+                return;
+            }
+
+            const deltaP = (techo - piso) / grillas;
+            txtDistancia.innerText = `$${Math.round(deltaP).toLocaleString()} COP`;
+
+            container.innerHTML = '';
+            for (let i = 0; i <= grillas; i++) {
+                const precioNivel = piso + (deltaP * i);
+                const esVenta = i > grillas / 2;
+                
+                const divNode = document.createElement('div');
+                divNode.className = `flex justify-between items-center text-[10px] font-mono px-3 py-1.5 rounded-lg bg-slate-950 border ${esVenta ? 'border-red-500/20 text-red-400' : 'border-emerald-500/20 text-emerald-400'}`;
+                divNode.innerHTML = `
+                    <span>Nivel ${i + 1}: ${esVenta ? 'Órden de Venta Automática 🟥' : 'Órden de Compra Límite 🟩'}</span>
+                    <span class="font-bold">$${Math.round(precioNivel).toLocaleString()} COP</span>
+                `;
+                container.appendChild(divNode);
+            }
+        }
+
+        function selectTrader(trader) {
+            const diagnostic = document.getElementById('s6-audit-diagnostic');
+            if (trader === 'alfa') {
+                diagnostic.innerHTML = `
+                    <p class="font-bold text-red-400"><i class="fa-solid fa-triangle-exclamation mr-1"></i> ALERTA: ALTO RIESGO DE QUIEBRA PATRIMONIAL</p>
+                    <p class="mt-1">Aunque el gestor exhibe un retorno histórico del 145.2% en COP, su métrica de <strong>Max Drawdown del -42.8%</strong> indica que arriesga demasiado capital por operación. Copiar esta estrategia expone al estudiante de grado 11º a ver evaporarse casi la mitad de sus ahorros en una sola racha bajista.</p>
+                `;
+            } else if (trader === 'delta') {
+                diagnostic.innerHTML = `
+                    <p class="font-bold text-emerald-400"><i class="fa-solid fa-circle-check mr-1"></i> AUDITORÍA APROBADA - PERFIL PROFESIONAL</p>
+                    <p class="mt-1">El operador Delta presenta un crecimiento moderado del 41.5% anual en pesos colombianos, pero resguarda la cuenta con disciplina férrea: su <strong>Max Drawdown es de apenas el -7.4%</strong>. Muestra una consistencia de ingeniería financiera apta para el resguardo de capital a largo plazo.</p>
+                `;
+            }
+        }
+
+        // CARGA AUTOMÁTICA DEL SISTEMA AL INICIALIZAR LA PAGINA
+        window.onload = function() {
+            initCharts();
+            calculateGordon();
+            runPositionSizing();
+            runGridSimulation();
+        };
+    </script>
+</body>
+</html>
